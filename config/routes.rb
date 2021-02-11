@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :reviews
+  resources :beers
+  resources :breweries
+  # resources :users
+
+  post '/login', to: 'user#login'
+
 end
