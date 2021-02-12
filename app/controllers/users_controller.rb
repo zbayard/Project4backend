@@ -2,8 +2,9 @@ class UsersController < ApplicationController
     before_action :authenticate, only: [:show, :update]
 
     def login
-        user = User.find_by(username: params[:username])
-        render json: User.first
+        user = User.first
+        # User.find_by(username: params[:username])
+        render json: user
     end
 
     def show
@@ -15,14 +16,19 @@ class UsersController < ApplicationController
         render json: @current_user)
     end
 
+    def create
+        user = User.create(user_params)
+        render json: user
+    end
+
     # def signup
     #     user = User.create(user_params)
     # end
 
-    # private
+    private
 
-    # def user_params
-    #     params.permit(:username, :password, :name, :image, :bio)
-    # end
+    def user_params
+        params.permit(:username, :password, :name, :image, :bio)
+    end
     
 end
