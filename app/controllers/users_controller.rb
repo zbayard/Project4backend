@@ -8,12 +8,14 @@ class UsersController < ApplicationController
     end
 
     def show
+        
         render json: @current_user
     end
 
     def update
-        @current_user.update(bio: params[:bio], image: params[:image]
-        render json: @current_user)
+       
+        @current_user.update(bio: params[:bio], image: params[:image])
+        render json: @current_user
     end
 
     def create
