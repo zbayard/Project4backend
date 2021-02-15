@@ -9,5 +9,16 @@ class BeersController < ApplicationController
         beer = Beer.find(params[:id])
         render json: beer
     end
+
+    def create
+        @beer = Beer.create(beer_params)
+        render json: @beer
+    end
+
+    private
+
+    def beer_params
+        params.require(:beer).permit(:user_id, :brewery_id, :name, :style, :image, :abv, :comment)
+    end
     
 end
