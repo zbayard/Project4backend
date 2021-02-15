@@ -49,3 +49,6 @@ gem 'json', '~> 2.5', '>= 2.5.1'
 gem 'rest-client', '~> 2.1'
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+
+# gem 'nio4r-v','~> 2.5.5'
