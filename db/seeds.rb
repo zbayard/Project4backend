@@ -6,8 +6,8 @@
 
 # Beer.destroy_all
 # Review.destroy_all
-Brewery.destroy_all
-User.destroy_all
+# Brewery.destroy_all
+# User.destroy_all
 
 
 # 100.times do 
