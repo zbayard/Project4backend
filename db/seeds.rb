@@ -69,14 +69,12 @@ User.create(
 
 
 Review.create(user_id: 1, brewery_id: 1, content: "Great spot to chill with friends", rating: 4, likes: 2)
-Review.create(user_id: 2, brewery_id: 1, content: "Great beers! A must go spot", rating: 5, likes: 3)
-Review.create(user_id: 3, brewery_id: 1, content: "No Blue Moon here...", rating: 1, likes: 2)
+
 
 Review.create(user_id: 3, brewery_id: 23, content: "Enjoyed our time here", rating: 3, likes: 5)
-Review.create(user_id: 2, brewery_id: 23, content: "Cans are pretty neat", rating: 4, likes: 4)
+
 
 Review.create(user_id: 3, brewery_id: 41, content: "What a great place, friendly staff", rating: 5, likes: 2)
-Review.create(user_id: 2, brewery_id: 41, content: "Atmosphere was too loud", rating: 2, likes: 1)
 
 Review.create(user_id: 3, brewery_id: 2, content: "Love their beer", rating: 4, likes: 5)
 
