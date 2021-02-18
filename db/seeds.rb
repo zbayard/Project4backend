@@ -4,51 +4,81 @@
 # key= '9f6aac6892msh4c38711f6ef7c70p17aefejsn0a0ce1898699'
 # host= 'brianiswu-open-brewery-db-v1.p.rapidapi.com'
 
-# Beer.destroy_all
-# Review.destroy_all
-# Brewery.destroy_all
-# User.destroy_all
+
+# i = 1
+# breweries = []
+
+# 161.times do
+#         response = RestClient.get "https://api.openbrewerydb.org/breweries?page=#{i}&per_page=50"
+#         json = JSON.parse response
+
+#         breweries << json
+#         i += 1
+# end
+
+# flattened_breweries = breweries.flatten
 
 
-# 100.times do 
     res = RestClient.get("https://api.openbrewerydb.org/breweries?per_page=200")
-# end 
-json = res.body
-
-brewery_hash = JSON.parse(json)
-
-brewery_hash.each do |brewery|  
     
-    new_brewery = Brewery.create(
-        name: brewery["name"],
-        brewery_type: brewery["brewery_type"],
-        street: brewery["street"],
-        city: brewery["city"],
-        state: brewery["state"],
-        postal_code: brewery["postal_code"],
-        country: brewery["country"],
-        longitude: brewery["longitude"],
-        latitude: brewery["latitude"],
-        phone: brewery["phone"],
-        website_url: brewery["website_url"]
-    )
-end
+    json = res.body
+    
+    brewery_hash = JSON.parse(json)
+    
+    brewery_hash.each do |brewery|  
+        
+        new_brewery = Brewery.create(
+                name: brewery["name"],
+                brewery_type: brewery["brewery_type"],
+                street: brewery["street"],
+                city: brewery["city"],
+                state: brewery["state"],
+                postal_code: brewery["postal_code"],
+                country: brewery["country"],
+                longitude: brewery["longitude"],
+                latitude: brewery["latitude"],
+                phone: brewery["phone"],
+                website_url: brewery["website_url"]
+                )
+        end  
 
 # ------------ USER DATA ------------
 User.create(
-    username: "Zach",
+    username: "zbayard",
     password: "abc123",
     image: "https://www.emmys.com/sites/default/files/styles/bio_pics_detail/public/Zack-Galifianakis-bio-450x600.jpg?itok=brFhcHpg",
     bio: "i like turtles",
     name: "Zach Bayard"
-
+)
+User.create(
+    username: "maifam",
+    password: "abc123",
+    image: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/10/11/09/mulan.jpg?width=1200",
+    bio: "Love to have a beer on a mountain",
+    name: "Mai Pham"
+)
+User.create(
+    username: "blueMoonCEO",
+    password: "abc123",
+    image:"https://www.porchdrinking.com/wp-content/uploads/2016/10/Keith-Villa2.jpg",
+    bio: "Belgian beer all the way ♥️ Blue Moon",
+    name: "Keith Villa"
 )
 
 # ------------ REVIEW DATA ------------
 
 
-Review.create(user_id: 1, brewery_id: 1, content: "Great spot to chill with friends", rating: 4, likes: 0)
+Review.create(user_id: 1, brewery_id: 1, content: "Great spot to chill with friends", rating: 4, likes: 2)
+Review.create(user_id: 2, brewery_id: 1, content: "Great beers! A must go spot", rating: 5, likes: 3)
+Review.create(user_id: 3, brewery_id: 1, content: "No Blue Moon here...", rating: 1, likes: 2)
 
+Review.create(user_id: 3, brewery_id: 23, content: "Enjoyed our time here", rating: 3, likes: 5)
+Review.create(user_id: 2, brewery_id: 23, content: "Cans are pretty neat", rating: 4, likes: 4)
+
+Review.create(user_id: 3, brewery_id: 41, content: "What a great place, friendly staff", rating: 5, likes: 2)
+Review.create(user_id: 2, brewery_id: 41, content: "Atmosphere was too loud", rating: 2, likes: 1)
+
+Review.create(user_id: 3, brewery_id: 2, content: "Love their beer", rating: 4, likes: 5)
 
 # ------------ BEER DATA ------------
 
@@ -76,6 +106,10 @@ Beer.create(name: "Temporal Dilation", brewery_id: 41, user_id: 1, abv: 7.8 , st
 Beer.create(name: "Pomona", brewery_id: 41, user_id: 1, abv: 5.9 , style: "Basil, Sea Salt, Kiwi Gose Style", 
         image: "https://images.squarespace-cdn.com/content/v1/5d65f0b311f0070001868992/1602735215600-PJH7CKAREOQROUGCL7WD/ke17ZwdGBToddI8pDm48kNiEM88mrzHRsd1mQ3bxVct7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0s0XaMNjCqAzRibjnE_wBlkZ2axuMlPfqFLWy-3Tjp4nKScCHg1XF4aLsQJlo6oYbA/Pomona-Mockup2.jpg?format=2500w", 
         comment: "Flavorful and fruity")
+Beer.create(name: "Diglossia", brewery_id: 41, user_id: 1, abv: 6.1 , style: "American Wild Ale", 
+        image: "https://images.squarespace-cdn.com/content/v1/5d65f0b311f0070001868992/1591987107956-Y2SW4YGG0OP8OVFTGFE3/ke17ZwdGBToddI8pDm48kD1O8I8tuAu35dbRjenCVrNZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwmOgeyy797S7k3Uv0CFPgtxSnrjXTFMs_MjXOo6DnsDsTKEj-npNqoCn2ggmIDymQ/image-asset.jpeg?format=750w",
+        comment: "Taste of Vanilla and Chicory")
+
 
 #[Grand Canyon Brewing - Williams, Arizona]
 Beer.create(name: "American Pilsner", brewery_id: 11, user_id: 1, abv: 5.0 , style: "Malt", 
